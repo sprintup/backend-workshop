@@ -1,0 +1,18 @@
+console.log('views/login.hbs');
+
+<h1>{{title}}</h1>
+<div>
+  <form action= '/' method="post">
+    <h2>Log In</h2>
+    Username
+    <br><input name='loginUserInput'></input> <br>
+    Password
+    <br><input type='password' name='loginPassInput'></input> <br>
+    <input type='submit' value='Log In' id='loginBtn'>
+  </form>
+</div>
+<!--if username and/or password is incorrect, login page re-renders and shows error message-->
+<p class='error'>{{errMsg}}</p>
+<form action = "/register" method="get">
+  <input type='submit' value = 'Sign Up'>
+</form>

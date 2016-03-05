@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <!-- Google Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-65071976-3', 'auto');
+    ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        {{#if session.user}}
+          <a href="/#/"> <img src="/images/logo.png" class="logo"style="width: auto; height: 120%"></a>
+          <div class="dropdown">
+            <ul class="nav navbar-nav navbar-right">
+              <div></a><i class="fa fa-user fa-3x"></i></div>
+              <ul class="dropdown-menu">
+                <li><a href="/#/">Search for Jobs</a></li>
+                <li><a href="/#/saved-jobs" id="jobs-button">Saved Jobs</a></li>
+                <li><a href="/users/{{user._id}}/edit">Edit {{user.email}}</a></li>
+                <li><a href="/logout">Logout</a></li>
+              </ul>
+            </ul>
+          </div>
+        {{else}}
+          <a href="/login"> <img src="/images/logo.png" class="logo"style="width: auto; height: 120%"></a>
+        {{/if}}
+      </div>
+    </nav>
+
+    {{#if session.user}}
+      <input type="hidden" id="user-id" value="{{user._id}}">
+    {{/if}}
+
+    {{#if alert}}
+    <div class="messages">
+        <p>{{alert}}</p>
+    </div>
+    {{/if}}
+    
+    <div class="main-content">
+      {{{body}}}
+    </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+    <script src="/javascripts/models.js"></script>
+    <script src="/javascripts/views.js"></script>
+    <script src="/javascripts/main.js"></script>
+  </body>
+</html>

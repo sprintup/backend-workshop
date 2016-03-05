@@ -1,0 +1,114 @@
+@font-face {
+  font-family: 'comic_zine_otregular';
+  src: url('./comiczineot_regular_macroman/comic_zine_ot-webfont.eot');
+  src: url('./comiczineot_regular_macroman/comic_zine_ot-webfont.eot?#iefix') format('embedded-opentype'),
+       url('./comiczineot_regular_macroman/comic_zine_ot-webfont.woff') format('woff'),
+       url('./comiczineot_regular_macroman/comic_zine_ot-webfont.ttf') format('truetype'),
+       url('./comiczineot_regular_macroman/comic_zine_ot-webfont.svg#comic_zine_otregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  background: url(Lightning-Bolt.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 10px;
+  font-family: 'comic_zine_otregular', sans-serif;
+  font-size: 75px;
+  width:
+  color: white;
+}
+
+body {
+color: white;
+}
+
+h5 {
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+h3 {
+  margin-top: 5px;
+  text-decoration: underline;
+}
+
+input, textarea {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.logout {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+button.logout {
+  top: 50px;
+}
+
+#username {
+  margin-top: 0;
+}
+
+/* Application Styles */
+
+#user-view {
+  overflow: hidden;
+  margin: 0 auto;
+  width: 90%;
+}
+
+#unassigned-tasks-view, #users-tasks-view {
+  float: left;
+  width: 47%;
+  border: 1px #fff solid;
+  border-radius: 3px;
+  padding: 5px .5% 0 .5%;
+  margin: 0 .5%;
+  background:rgba(0,0,0,0.7);
+}
+
+#new-task {
+  float: right;
+  margin-top: -45px;
+}
+
+#new-task {
+  margin-left: 50px;
+}
+
+#create-task-view {
+  border: 1px #fff solid;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background:rgba(0,0,0,0.5);
+}
+
+#task-view {
+  border: 1px #fff solid;
+  border-radius: 3px;
+  padding: 10px;
+  margin: 5px 0;
+  background:rgba(0,0,0,0.5);
+}
+
+/* Alerts */
+
+.error {
+  color: gold;
+}
+
+.success {
+  color: #89dd1c;
+}
