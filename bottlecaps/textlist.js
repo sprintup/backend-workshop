@@ -1,18 +1,9 @@
 $(document).ready( function () {
 
     var TextModel = Backbone.Model.extend({
-        editedValue : 0,
-
-        defaults : {"value" : "",
-                    "editedValue" : 0},
+        defaults : {"value" : ""},
         replace : function (str) {
-            this.set("value", str); 
-            this.increment();                             
-        },
-        increment : function (argument) {
-            this.editedValue++;  
-            this.set("editedValue", this.editedValue); 
-            console.log('increment called with editedValue: '+ this.editedValue);  
+          this.set("value", str);
         }
     });
 
@@ -20,13 +11,8 @@ $(document).ready( function () {
         render: function () {
             var textVal = this.model.get("value");
             var btn = '<button>Clear</button>';
-            var dbtn = '<button id=\'delete\'>Delete</button>';
             var input = '<input type="text" value="' + textVal + '" />';
-
-            var editedValue = this.model.get("editedValue");
-            var edited = '<span> Edited: ' + editedValue + '</span>';
-
-            this.$el.html(textVal+"<br><div>" + input + btn + dbtn  +edited +"</div>");
+            this.$el.html(textVal+"<br><div>" + input + btn + "</div>");
         },
         initialize: function () {
             this.model.on("change", this.render, this);
@@ -35,8 +21,7 @@ $(document).ready( function () {
         },
         events : {
             "click button" : "clear",
-            "keypress input" : "updateOnEnter",                  //Why are the event keys so loosly defined? 
-            "click #delete"    : "deleteModel"
+            "keypress input" : "updateOnEnter"
         },
         replace : function () {
             var str = this.$el.find("input").val();
@@ -49,11 +34,6 @@ $(document).ready( function () {
             if(e.keyCode == 13) {
                 this.replace();
             }
-        },
-        deleteModel : function (argument) {
-            // body...
-            console.log("delete button pressed with argument: " + argument + 'and this: ' + this);
-            this.remove();
         }
     });
 
@@ -91,9 +71,6 @@ $(document).ready( function () {
 
     textCollectionView.render();
 
-    $("#listdiv").append(textCollectionView.$el);               
-    /*
-        why does textCollectionView have a cached jQuery object?
-    */
+    $("#listdiv").append(textCollectionView.$el);
 
 });
