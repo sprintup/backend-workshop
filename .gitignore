@@ -5,6 +5,7 @@ backbone.js
 jquery-2.1.4.js
 underscore.js
 bootstrap.min.css
+angular.js
 
 # Logs
 logs
