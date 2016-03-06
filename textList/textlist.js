@@ -1,9 +1,17 @@
 $(document).ready( function () {
 
     var TextModel = Backbone.Model.extend({
-        defaults : {"value" : ""},
+        editedValue : 0,
+
+        defaults : {"value" : "",
+                    "editedValue" : 0},
         replace : function (str) {
-          this.set("value", str);                               //Is this the model or the element? element
+            this.set("value", str);                              
+        },
+        increment : function (argument) {
+            this.editedValue++;  
+            this.set("editedValue", this.editedValue); 
+            console.log('increment called with editedValue: '+ this.editedValue);  
         }
     });
 
@@ -13,7 +21,11 @@ $(document).ready( function () {
             var btn = '<button>Clear</button>';
             var dbtn = '<button id=\'delete\'>Delete</button>';
             var input = '<input type="text" value="' + textVal + '" />';
-            this.$el.html(textVal+"<br><div>" + input + btn + dbtn +"</div>");
+
+            var editedValue = this.model.get("editedValue");
+            var edited = '<span> Edited: ' + editedValue + '</span>';
+
+            this.$el.html(textVal+"<br><div>" + input + btn + dbtn  +edited +"</div>");
         },
         initialize: function () {
             this.model.on("change", this.render, this);
@@ -28,6 +40,7 @@ $(document).ready( function () {
         replace : function () {
             var str = this.$el.find("input").val();
             this.model.replace(str);
+            this.model.increment();
         },
         clear: function () {
             this.model.replace("");
