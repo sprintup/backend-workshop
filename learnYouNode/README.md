@@ -1,4 +1,4 @@
-### [LearnyouNode](https://github.com/workshopper/learnyounode)
+### [Learnyounode](https://github.com/workshopper/learnyounode)
 
 ## Lesson 1
 * To print these instructions again, run: learnyounode print
@@ -13,6 +13,7 @@
 ## Lesson 3: My first I/O
 * [file system](file:///usr/local/lib/node_modules/learnyounode/node_apidoc/fs.html)
 * [buffers](file:///usr/local/lib/node_modules/learnyounode/node_apidoc/buffer.html) are Node's way of efficiently representing arbitrary arrays of data, whether it be ascii, binary or some other format.
+ * buffer objects have to be converted to strings
 
 ## Lesson 4: My First Async I/O
 * fs.readFile()
@@ -38,3 +39,14 @@
 * you must return the callback with the error in the argument, even in early returns
 * in learnyounode errors should not be prefixed with string
 * [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+
+## Lesson 7: HTTP Client
+* [http core module](file:///usr/local/lib/node_modules/learnyounode/node_apidoc/http.html)
+* [http.get(url, callback)](file:///usr/local/lib/node_modules/learnyounode/node_apidoc/http.html#http_http_get_options_callback) is a get request
+ * has signature of function callback (response) {}
+ * this response object is a node stream
+ * also has a setEncoding() method that you can set to "utf8" to convert to strings rather than a buffer. 
+* [Node Streams](https://github.com/maxogden/art-of-node#streams). Three important events from a stream are "data","error","end".
+ * Listen to events with response.on("data", function (data) {})
+ * The "data" event is emitted when a chunk of data is available
+* Set encoding outside event listener
