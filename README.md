@@ -13,3 +13,4 @@ Similar to my frontend development workshop, this is where I learn about new tec
 * $(document).ready( function () {}): to be run only when the document is ready as per jQuery
 * jQuery [manipulation](http://api.jquery.com/category/manipulation/) using setters like .append()
 * [CSS psuedo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp)
+* [Learnyounode](modules)
