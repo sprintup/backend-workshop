@@ -27,3 +27,14 @@
 
 ## Lesson 5: Filtered LS
 * [path module](file:///usr/local/lib/node_modules/learnyounode/node_apidoc/path.html)
+* callback functions don't need names
+
+## Lesson 6: Make It Modular
+* conforming to a set of rules allows other node users to easily implement your procedure. 
+* extenstions are option when requiring modules
+* it's idiomatic to check for errors and do early-returns within callback functions.
+* module.exports callbacks and invoking with require
+* node syntax for callback arguments is error, data. So first arg when invoking callback ought to be null.
+* you must return the callback with the error in the argument, even in early returns
+* in learnyounode errors should not be prefixed with string
+* [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
