@@ -1,4 +1,5 @@
 ### [Learnyounode](https://github.com/workshopper/learnyounode)
+Learn you node is a tool for learning node. Below are my notes. 
 
 ## Lesson 1
 * To print these instructions again, run: learnyounode print
@@ -50,3 +51,9 @@
  * Listen to events with response.on("data", function (data) {})
  * The "data" event is emitted when a chunk of data is available
 * Set encoding outside event listener
+* Remember to listen for the error event from the stream.
+
+## Lesson 8: HTTP Collect
+* [bl(Buffer List)](file:///usr/local/lib/node_modules/learnyounode/docs/bl.html)
+* [concat-stream](file:///usr/local/lib/node_modules/learnyounode/docs/concat-stream.html)
+* response.pipe() is how you pipe data into bufferlist
