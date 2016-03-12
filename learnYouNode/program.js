@@ -1,100 +1,80 @@
 /*
-Question
- ## JUGGLING ASYNC (Exercise 9 of 13)  
+Answer
+ ## TIME SERVER (Exercise 10 of 13)  
    
-  This problem is the same as the previous problem (HTTP COLLECT) in that  
-  you need to use http.get(). However, this time you will be provided with  
-  three URLs as the first three command-line arguments.  
+  Write a TCP time server!  
    
-  You must collect the complete content provided to you by each of the URLs  
-  and print it to the console (stdout). You don't need to print out the  
-  length, just the data as a String; one line per URL. The catch is that you  
-  must print them out in the same order as the URLs are provided to you as  
-  command-line arguments.  
+  Your server should listen to TCP connections on the port provided by the  
+  first argument to your program. For each connection you must write the  
+  current date & 24 hour time in the format:  
+   
+     "YYYY-MM-DD hh:mm"  
+   
+  followed by a newline character. Month, day, hour and minute must be  
+  zero-filled to 2 integers. For example:  
+   
+     "2013-07-06 17:42"  
+   
+  After sending the string, close the connection.  
+     "YYYY-MM-DD hh:mm"  
+   
+  followed by a newline character. Month, day, hour and minute must be  
+  zero-filled to 2 integers. For example:  
+   
+     "2013-07-06 17:42" 
 */
+var net = require('net')  
+// var date = new Date();
+// var date = date.getFullYear()
+//           +'-0'+(date.getMonth()+1)
+//           +'-'+date.getDate()
+//           +' 0'+date.getHours()
+//           +':'+date.getMinutes();
+var strftime = require('strftime');
 
-var http = require('http');
-var bl = require('bl');
-var counter = 0;
-var data2 = undefined;
-var data3 = undefined;
-var data4 = undefined;
+// console.log(strftime('%Y-%m-%d %H:%M:%S'))
 
-http.get(process.argv[2], function callback (response) {
-  response.setEncoding('utf8');
+var server = net.createServer(function (socket) {  
+ // socket handling logic  
+  // socket.write(date);
+  socket.end(strftime('%Y-%m-%d %H:%M\n'));
+  // console.log(socket);
+})  
+server.listen(process.argv[2]);
 
-  response.pipe(bl(function (error, data) {
-    // console.log(' | 2 |  ');
-    counter ++;
-    data2 = data.toString();
-    printResults();
-  }));
-
-  // response.on('error: ', console.error) ;
-});
-
-http.get(process.argv[3], function callback (response) {
-  response.setEncoding('utf8');
-
-  response.pipe(bl(function (error, data) {
-    // console.log(' | 3 |  ');
-    counter ++;
-    data3 = data.toString();
-    printResults();
-  }));
-
-  // response.on('error: ', console.error) ;
-});
-
-http.get(process.argv[4], function callback (response) {
-  response.setEncoding('utf8');
-
-  response.pipe(bl(function (error, data) {
-    // console.log(' | 4 |  ');
-    counter ++;
-    data4 = data.toString();
-    printResults();
-  }));
-
-  // response.on('error: ', console.error) ;
-});
-
-function printResults (argument) {
-  // console.log('counter: '+counter);
-  if (counter == 3) {
-    console.log(data2);
-    console.log(data3);
-    console.log(data4);
-  };
-}
+  // date.getFullYear()  
+  // date.getMonth()     // starts at 0  
+  // date.getDate()      // returns the day of month  
+  // date.getHours()  
+  // date.getMinutes()  
+   
+// console.log(date.getFullYear()
+//           +'-0'+date.getMonth()
+//           +'-'+date.getDate()
+//           +' 0'+date.getHours()
+//           +':'+date.getMinutes()
+//           );
 
 /*
-Solution:
- var http = require('http')  
- var bl = require('bl')  
- var results = []  
- var count = 0  
-   
- function printResults () {  
-   for (var i = 0; i < 3; i++)  
-     console.log(results[i])  
- }  
-   
- function httpGet (index) {  
-   http.get(process.argv[2 + index], function (response) {  
-     response.pipe(bl(function (err, data) {  
-       if (err)  
-         return console.error(err)  
-   
-       results[index] = data.toString()  
-       count++  
-   
-       if (count == 3)  
-         printResults()  
-     }))  
-   })  
- }  
-   
- for (var i = 0; i < 3; i++)  
-   httpGet(i)  
+Solution
+     var net = require('net')  
+       
+     function zeroFill(i) {  
+       return (i < 10 ? '0' : '') + i  
+     }  
+       
+     function now () {  
+       var d = new Date()  
+       return d.getFullYear() + '-'  
+         + zeroFill(d.getMonth() + 1) + '-'  
+         + zeroFill(d.getDate()) + ' '  
+         + zeroFill(d.getHours()) + ':'  
+         + zeroFill(d.getMinutes())  
+     }  
+       
+     var server = net.createServer(function (socket) {  
+       socket.end(now() + '\n')  
+     })  
+       
+     server.listen(Number(process.argv[2]))  
 */

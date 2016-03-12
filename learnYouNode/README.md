@@ -57,3 +57,18 @@ Learn you node is a tool for learning node. Below are my notes.
 * [bl(Buffer List)](file:///usr/local/lib/node_modules/learnyounode/docs/bl.html)
 * [concat-stream](file:///usr/local/lib/node_modules/learnyounode/docs/concat-stream.html)
 * response.pipe() is how you pipe data into bufferlist
+
+## Lesson 9: Juggling Async
+* How to count asynchronous callbacks
+
+## Lesson 10: Time Server
+* [Transmission Control Protocol](https://en.wikipedia.org/wiki/Transmission_Control_Protocol)
+* Socket objects contain meta data regarding the connection, which is also a node duplex stream, meaning you can read from and write to it. 
+* [WebSockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+* socket.write(data) to write data
+* socket.end() to close socket
+ * .end(data) simplifies the expression
+* [strftime](https://github.com/samsonjs/strftime)
+* [Date()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
+* Every connection received by net server triggers callback that createserver() takes as an argument. 
+ * the callback has a socket object as an argument as an argument
