@@ -72,3 +72,12 @@ Learn you node is a tool for learning node. Below are my notes.
 * [Date()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 * Every connection received by net server triggers callback that createserver() takes as an argument. 
  * the callback has a socket object as an argument as an argument
+
+## Lesson 11: HTTP File Server
+* http.createServer() creates a server that can talk HTTP
+	* the server object that is returned is called the EventEmitter
+* both request and response are node streams
+* [Anatomy of a HTTP transaction](https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/)
+* must set errors on request or the app might crash
+* [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+* .pipe() directs data from one stream to another
