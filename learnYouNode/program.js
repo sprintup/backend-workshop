@@ -1,43 +1,51 @@
 /*
-Question
- ## HTTP FILE SERVER (Exercise 11 of 13)  
+ ## HTTP UPPERCASERER (Exercise 12 of 13)  
    
-  Write an HTTP server that serves the same text file for each request it  
-  receives.  
+  Write an HTTP server that receives only POST requests and converts  
+  incoming POST body characters to upper-case and returns it to the client.  
    
   Your server should listen on the port provided by the first argument to  
   your program.  
-   
-  You will be provided with the location of the file to serve as the second  
-  command-line argument. You must use the fs.createReadStream() method to  
-  stream the file contents to the response.  
-*/
+*/   
 
 var fs = require('fs');
 var http = require('http');
+var map = require('through2-map');
 
 var server = http.createServer(function (request,response) {
-  // response.write(fs.createReadStream(process.argv[3]);
-  var srcFileStream = fs.createReadStream(process.argv[3]);
-  srcFileStream.pipe(response);
+  // var body = [];
+  // request.on('data', function (chunk) {
+  //   body.push(chunk);
+  // }).on('end', function () {
+  //   console.log(body.toString());
+  // })
+
+    if (request.method === "POST") {    
+      request.pipe(map(function (chunk) {  
+      return chunk.toString().split('').join('').toUpperCase()  
+      })).pipe(response); 
+    };
+  });
+
+
+
+  // var srcFileStream = fs.createReadStream(process.argv[3]);
+  // srcFileStream.pipe(response);
   // response.write(fs.createReadStream(process.argv[3]).pipe(response));
-
-  // src.pipe(dst);
-});
-// console.log('file: '+fs.createReadStream(process.argv[3]);
 server.listen(process.argv[2]);
-
-// console.log(process.argv);
 
 /*
 Solution:
  var http = require('http')  
- var fs = require('fs')  
+ var map = require('through2-map')  
    
  var server = http.createServer(function (req, res) {  
-   res.writeHead(200, { 'content-type': 'text/plain' })  
+   if (req.method != 'POST')  
+     return res.end('send me a POST\n')  
    
-   fs.createReadStream(process.argv[3]).pipe(res)  
+   req.pipe(map(function (chunk) {  
+     return chunk.toString().toUpperCase()  
+   })).pipe(res)  
  })  
    
  server.listen(Number(process.argv[2]))  

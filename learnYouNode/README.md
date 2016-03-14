@@ -81,3 +81,8 @@ Learn you node is a tool for learning node. Below are my notes.
 * must set errors on request or the app might crash
 * [JSON.stringify()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 * .pipe() directs data from one stream to another
+
+## Lesson 12: HTTP Uppercaseer
+* [through2-map](file:///usr/local/lib/node_modules/learnyounode/node_modules/through2-map  ) works like Array#map() but for streams of data
+* request.on('data',callback) is where the data from the request is stored
+* program with the thought that what is exected doesn't occur first and add exceptions. For instance, the solution has a if !POST return statment prior to logic. 
