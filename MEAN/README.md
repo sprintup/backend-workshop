@@ -6,6 +6,8 @@
  * Must have meanjs generator installed before running `yo meanjs`
 
 * src- creates a clear seperation between my code and third party libraries. This directory contains all node app code.
+ * api- is where you store all of your api routes
+ * index.js- api module
 * public- static assets (html files, imgs, css)
 
 
@@ -13,7 +15,56 @@
 * express() is the default method for creating an instance for setting up middleware for configuring routes and starting server
 * [app.use()](http://expressjs.com/en/api.html#app.use) mounts the specified middleware function or functions at the specified path. 
  * express.static() tells express which file to serve static files from
+ * express automatically formats JSON response headers if you return a JSON object
 
 ### Nodemon
 * node module that starts your server based on the entry point that we configured when we initialized the project with npm init
 * watches javascript files and restarts server when changes occur
+
+## Routes
+* GET routes are the most common types or routes in web applications. To use a GET route use the .get() method
+* all files in public folder have a route so be careful not to create new routes that conflict with the routes that already exist
+ * to avoid this prefix api routes with '/api/' to create api namespace.
+ * also can use a router instead of manually writing prefix. This works a lot like mounting the api routes to the app, but instead of mounting the route to the app, mount it to the router. Then mount the router to the app using app.use('/', router);
+ * The router will automatically prefix the route with the namespace.
+ * Want to keep routes in their own file 
+
+## Mock Data
+* [Postman](https://www.getpostman.com/) to check routes
+ * lets you see header information sent with response
+ * collections for working on multiple applications
+ * environment variables to switch from local and remote servers
+
+## Angular 
+* in index.html file the app is loaded/initilized or 'bootstrapped' with the ng-app directive
+ * ng-controller director binds main controller to div
+ * <todo> is a custom directive
+* in scripts/app.js angular is creating new module
+	* this module must be included in the html before the rest of the directives, services and controllers so they can be attached to the app as dependencies.
+* name controller files the same as the controller name
+ * main functionallity of main controller file is the addTodo method that creates a new todo and adds it to the todos that are currently in the angular scope.
+ * whenever the main controller is loaded (page is visited) data service gets the todos and attaches the scopes to the todos variable
+* custom directive lives in scripts/directives folder
+	* not a whole lot in the scripts file 
+	* in the todo template file, there are ng-class directives which add classes based on when the scopes variables evaluate to true or false
+	* ng-click method do things like setting variable editing to true; to firing the delete todo scope method
+	* allows main controller to be lightweight
+* best practice to keep the controllers with as little logic as possible by keeping the core logic inside directives and services 
+	* write core logic once 
+
+## Connecting Angular app with Express app
+1. Make changes to data service in scripts/services/data to load todos from api
+
+## Webpack
+* all js files need to be included in html file, in order
+	* module loaders like [webpack](https://webpack.github.io/) let you bundle your js files into a single file
+	* lets you install vendor resources using npm and reference them the same way you would in node (require method).
+	* move into an app directory
+	* remove all script tags from html and replace them with 2 
+		* /scripts/vendor.bundle.js //third party libraries (angular)
+		* /scripts/todo.bundle.js //app code
+* [webpack.config.js](https://webpack.github.io/docs/configuration.html) is needed for webpack to work 
+	* context- where application source code lives
+	* entry- first file webpack should load (like package.json main): see [code splitting](https://webpack.github.io/docs/code-splitting.html)
+	* output- where bundle will go when webpack is done
+
