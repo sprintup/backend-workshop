@@ -86,3 +86,12 @@ Learn you node is a tool for learning node. Below are my notes.
 * [through2-map](file:///usr/local/lib/node_modules/learnyounode/node_modules/through2-map  ) works like Array#map() but for streams of data
 * request.on('data',callback) is where the data from the request is stored
 * program with the thought that what is exected doesn't occur first and add exceptions. For instance, the solution has a if !POST return statment prior to logic. 
+
+## Lesson 13: HTTP JSON API Server
+* request.url is lowercase
+* [node core url module](file:///usr/local/lib/node_modules/learnyounode/node_apidoc/url.html)
+* it is important to set content type properly on responses.
+* how to parse a url
+* parsing iso dates from strings by passing string as argument to new date
+* use response.end() to both pass data and close the socket
+* when creating a JSON object, put its creation into a function 
