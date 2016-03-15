@@ -63,6 +63,7 @@
 	* remove all script tags from html and replace them with 2 
 		* /scripts/vendor.bundle.js //third party libraries (angular)
 		* /scripts/todo.bundle.js //app code
+	* run `webpack --watch' to tell webpack to rebuild bundles if js files change
 * [webpack.config.js](https://webpack.github.io/docs/configuration.html) is needed for webpack to work 
 	* context- where application source code lives
 	* entry- first file webpack should load (like package.json main): see [code splitting](https://webpack.github.io/docs/code-splitting.html)
@@ -120,3 +121,41 @@
 
 ## Seed Data
 * create a seed.js file in src file with mock todos
+
+## Creating data with POST routes in Express
+* add post route with router.post() convenience method
+* post method used to send data to the server
+* Express does not have a body parser by default
+	* To parse data use the [body-parser](https://github.com/expressjs/body-parser) module `npm install body-parser --save -E`
+	* tell express to use body-parser's JSON method with app.use(parser.json()); in the app.js file
+	* body parser has many other methods for parsing 
+
+## Editing Data with PUT route
+* use put convenience method
+* with id parameter
+	* so that you can get the parameter from the req.params object
+	* handled with Express
+* need to look up todo by it's id and then update it
+	* mongoos has a findByIdAndUpdate() method
+	* must explicitly tell mongoose to return new data by sending an object with a key of "new" set to true as 3rd argument
+* mongoose returns the old argument by default when updating record
+* /todos/:id the color represents a paramter
+
+## Create and Update data in Angular
+* $q.all(queue) to run all of the requests in parallel
+	* .all() method iterates through queue, runs each request and returns a promise
+	* passing promises. Remember to return promise in data.js
+	* angular [$q](https://docs.angularjs.org/api/ng/service/$q)
+		* resolves all promises before returning results
+
+# Advanced Angular
+* [ngInclude](https://docs.angularjs.org/api/ng/directive/ngInclude) to include navbar template
+	* just include the ng-include directive where you want the template in your html, with the src set to the path to template in the templates folder
+* [Angulars interval service]
+	* when you request a template through url, like ng-include src attribute, angular first looks for the template in the template cache. If it's not there angular will put it there for further use.
+	* the src attribute takes an expression that should result in a path to the template. In this app it's a string, but it could be a function or inline string concatenation
+* two-way data binding means it is prefered to use angular [wrapper services](https://docs.angularjs.org/api/ng/service) instead of common native js methods
+	* .setInterval() == $interval
+	* .setTimeout() == $timeout
+* error method gives stack trace, which helps with debugging
+
