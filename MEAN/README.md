@@ -68,3 +68,55 @@
 	* entry- first file webpack should load (like package.json main): see [code splitting](https://webpack.github.io/docs/code-splitting.html)
 	* output- where bundle will go when webpack is done
 
+# Mongo
+* Install [Homebrew](http://brew.sh/)
+* setting up [mongo](http://treehouse.github.io/installation-guides/mac/mongo-mac.html)
+* Using Mongo
+	* start mongo daemon with `mongod`
+	* in another terminal start shell with `mongo', which is an app to access data in MongoDB
+	* exit shell with `quit()`
+	* stop mongo daemon `ctrl-c`
+* to connect app to mongo
+	* create a database.js file in the src directory
+	* add callback to verify mongoose is working properly in the database.js file
+
+## Mongoose
+* [Mongoose](http://mongoosejs.com/) is a node middleware that allows us to create complex objects or models to represent our data to store it in mongodb.
+* Install mongoose with `npm install --save -E mongoose`
+* to create a connection with mongoddo use `mongoose.connect()`
+	* then require databas in app.js file
+* mongoose is singleton: meaning changes in one file are reflected across node process
+* return err with response status like in index.js
+
+## Schema
+* schema- is a way to define and control an object that will be stored in the database
+* first create a models directory in src folder
+* models directory- where we keep our mongoose models
+* register models with mongoose
+* use schema constructor to create new mongoose schema, which is the Schema() method off the mongoose module
+* most simple schema are objects with names and [value types](http://mongoosejs.com/docs/schematypes.html)
+* once you have a schema, you can create the model
+
+## Model
+* create a model using the mongoose.model() method [docs](http://mongoosejs.com/docs/models.html)
+* because mongoose is a singleton, models are available where ever you require mongoose
+
+## Iron Node Debugger
+* [Iron Node](http://s-a.github.io/iron-node/) lets us interactivly debug applications in the browser while the node application is running
+* install with `npm install iron-node -g`
+* breakpoints are a main way to debug. There are two ways to set them
+	* Permanent breakpoint into code: debugger;
+	* Temporary breakpoints in debugger
+* Use iron-node just like node command: `iron-node src/app.js`
+* to manually load file into memory in iron node is with cmd-p and enter file
+* can be used to sift through scopes, including closures.
+
+## Using Models 
+* capitilizing first letter is a convention for referencing models, class or constructor function
+* get data (todos) from database using models .find() method
+	* first parameter is a JSON object where you pass conditions for the objects that you want to find. Empty object will return all.
+	* second parameter is a callback function that takes 2 arguments (err, todos). Mongoose will always take err as first parameter
+* create new record on database with .create() method and pass it a JSON object
+
+## Seed Data
+* create a seed.js file in src file with mock todos
