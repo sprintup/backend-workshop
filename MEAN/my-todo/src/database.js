@@ -1,4 +1,7 @@
 'use strict';
+/*
+	Uses mongoose to get mongo set up in app
+*/
 
 var mongoose = require('mongoose');
 

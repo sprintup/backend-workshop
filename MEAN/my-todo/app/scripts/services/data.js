@@ -1,9 +1,15 @@
 'use strict';
+/*
+* https://teamtreehouse.com/library/building-a-mean-application/creating-and-editing-data-in-a-mean-app/create-and-update-data-in-angular
+
+* https://teamtreehouse.com/library/building-a-mean-application/going-mean-with-angular/geting-todos
+*/
 
 function DataService($http, $q) {
 
   this.getTodos = function(cb) {
-    $http.get('/api/todos').then(cb);
+    // $http.get('/api/todos').then(cb);
+    $http.get('/mock/todos.json').then(cb);
   };
   
   this.deleteTodo = function(todo) {
@@ -22,7 +28,6 @@ function DataService($http, $q) {
   		if (!todo._id) {
   			request = $http.post('/api/todos', todo)
   		} else {
-
   			request = $http.put('/api/todos/' + todo._id, todo).then(function  (result) {
   				todo = result.data.todo;
   				return todo;

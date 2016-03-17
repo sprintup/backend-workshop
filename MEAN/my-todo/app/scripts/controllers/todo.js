@@ -1,7 +1,7 @@
 'use strict';
 
 function TodoCtrl($scope, dataService) {
-
+  
   $scope.deleteTodo = function(todo, index) {
     dataService.deleteTodo(todo).then(function () {
       $scope.todos.splice(index, 1);

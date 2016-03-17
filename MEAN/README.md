@@ -34,28 +34,13 @@
  * lets you see header information sent with response
  * collections for working on multiple applications
  * environment variables to switch from local and remote servers
-
-## Angular 
-* in index.html file the app is loaded/initilized or 'bootstrapped' with the ng-app directive
- * ng-controller director binds main controller to div
- * <todo> is a custom directive
-* in scripts/app.js angular is creating new module
-	* this module must be included in the html before the rest of the directives, services and controllers so they can be attached to the app as dependencies.
-* name controller files the same as the controller name
- * main functionallity of main controller file is the addTodo method that creates a new todo and adds it to the todos that are currently in the angular scope.
- * whenever the main controller is loaded (page is visited) data service gets the todos and attaches the scopes to the todos variable
-* custom directive lives in scripts/directives folder
-	* not a whole lot in the scripts file 
-	* in the todo template file, there are ng-class directives which add classes based on when the scopes variables evaluate to true or false
-	* ng-click method do things like setting variable editing to true; to firing the delete todo scope method
-	* allows main controller to be lightweight
-* best practice to keep the controllers with as little logic as possible by keeping the core logic inside directives and services 
-	* write core logic once 
+* located in root directory
+	* holds data for testing things like the api or building it
 
 ## Connecting Angular app with Express app
-1. Make changes to data service in scripts/services/data to load todos from api
+* Make changes to data service in scripts/services/data to load todos from api
 
-## Webpack
+## Webpack module loader
 * all js files need to be included in html file, in order
 	* module loaders like [webpack](https://webpack.github.io/) let you bundle your js files into a single file
 	* lets you install vendor resources using npm and reference them the same way you would in node (require method).
@@ -68,6 +53,7 @@
 	* context- where application source code lives
 	* entry- first file webpack should load (like package.json main): see [code splitting](https://webpack.github.io/docs/code-splitting.html)
 	* output- where bundle will go when webpack is done
+* [Setting up webpack](https://teamtreehouse.com/library/building-a-mean-application/going-mean-with-angular/setting-up-webpack)
 
 # Mongo
 * Install [Homebrew](http://brew.sh/)
@@ -103,12 +89,12 @@
 * because mongoose is a singleton, models are available where ever you require mongoose
 
 ## Iron Node Debugger
-* [Iron Node](http://s-a.github.io/iron-node/) lets us interactivly debug applications in the browser while the node application is running
 * install with `npm install iron-node -g`
+* Use iron-node just like node command: `iron-node src/app.js`
+* [Iron Node](http://s-a.github.io/iron-node/) lets us interactivly debug applications in the browser while the node application is running
 * breakpoints are a main way to debug. There are two ways to set them
 	* Permanent breakpoint into code: debugger;
 	* Temporary breakpoints in debugger
-* Use iron-node just like node command: `iron-node src/app.js`
 * to manually load file into memory in iron node is with cmd-p and enter file
 * can be used to sift through scopes, including closures.
 
@@ -130,7 +116,32 @@
 	* tell express to use body-parser's JSON method with app.use(parser.json()); in the app.js file
 	* body parser has many other methods for parsing 
 
-## Editing Data with PUT route
+## Angular 
+* install with `npm install --save angular`
+* in index.html file the app is loaded/initilized or 'bootstrapped' with the ng-app directive
+ * ng-controller director binds main controller to div
+ * <todo> is a custom directive
+* in scripts/app.js angular is creating new module
+	* this module must be included in the html before the rest of the directives, services and controllers so they can be attached to the app as dependencies.
+* name controller files the same as the controller name
+ * main functionallity of main controller file is the addTodo method that creates a new todo and adds it to the todos that are currently in the angular scope.
+ * whenever the main controller is loaded (page is visited) data service gets the todos and attaches the scopes to the todos variable
+* custom directive lives in scripts/directives folder
+	* not a whole lot in the scripts file 
+	* in the todo template file, there are ng-class directives which add classes based on when the scopes variables evaluate to true or false
+	* ng-click method do things like setting variable editing to true; to firing the delete todo scope method
+	* allows main controller to be lightweight
+* best practice to keep the controllers with as little logic as possible by keeping the core logic inside directives and services 
+	* write core logic once 
+* [$q](https://docs.angularjs.org/api/ng/service/$q) provider
+	* A service that helps you run functions asynchronously, and use their return values (or exceptions) when they are done processing.
+	* used here to bundle our request to the server
+	* to use it inject it into the service as a parameter
+	* used to help manage requests
+* [$http](https://docs.angularjs.org/api/ng/service/$http) service
+	* The $http service is a core Angular service that facilitates communication with the remote HTTP servers via the browser's XMLHttpRequest object or via JSONP.
+
+### Editing Data with PUT route
 * use put convenience method
 * with id parameter
 	* so that you can get the parameter from the req.params object
@@ -141,14 +152,25 @@
 * mongoose returns the old argument by default when updating record
 * /todos/:id the color represents a paramter
 
-## Create and Update data in Angular
+### Create and Update data in Angular
 * $q.all(queue) to run all of the requests in parallel
 	* .all() method iterates through queue, runs each request and returns a promise
 	* passing promises. Remember to return promise in data.js
 	* angular [$q](https://docs.angularjs.org/api/ng/service/$q)
 		* resolves all promises before returning results
 
-# Advanced Angular
+### Angular Templates
+* https://teamtreehouse.com/library/angular-basics
+
+* https://teamtreehouse.com/library/building-a-mean-application/going-mean-with-angular/angular-refresher
+* ng-class directives here add classes based on when the scope variables evaluate to true or false
+  * when marked as 'completed', 'completed' is added to the list of the elements classes
+
+* ng-click 
+  * setting variable editing to true
+  * firing the delete todo scope method
+
+### Advanced Angular
 * [ngInclude](https://docs.angularjs.org/api/ng/directive/ngInclude) to include navbar template
 	* just include the ng-include directive where you want the template in your html, with the src set to the path to template in the templates folder
 * [Angulars interval service]
@@ -158,4 +180,5 @@
 	* .setInterval() == $interval
 	* .setTimeout() == $timeout
 * error method gives stack trace, which helps with debugging
+
 
