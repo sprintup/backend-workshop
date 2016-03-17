@@ -1,5 +1,5 @@
 ## A test MEAN todo app
-* from this [tutorial](https://teamtreehouse.com/library/building-a-mean-application)
+* based from this [repo](https://github.com/sprintup/mean-todo) and from this [tutorial](https://teamtreehouse.com/library/building-a-mean-application)
 * [the original mean stack blog post](http://bit.ly/1Ozaz5J)
 * Scaffold a new mean stack project with [meanjs generator](http://meanjs.org/generator.html)
 * [Yeoman](http://yeoman.io/) to generate almost any type of project

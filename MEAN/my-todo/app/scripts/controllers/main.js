@@ -11,7 +11,6 @@ function MainCtrl ($scope, dataService){
     $scope.todos.unshift({name: "This is a new todo.",
                       completed: false});
   };
-  
 }
 
 module.exports = MainCtrl;

@@ -5,7 +5,6 @@ var parser = require('body-parser');
 var router = require('./api');
 
 var app = express();
-
 require('./database');
 require('./seed');
 

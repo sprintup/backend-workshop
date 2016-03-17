@@ -10,7 +10,7 @@ webpackJsonp([0],[
 	__webpack_require__(3);
 	__webpack_require__(5);
 	__webpack_require__(7);
-	 // debugger;
+
 
 /***/ },
 /* 1 */,
@@ -122,7 +122,6 @@ webpackJsonp([0],[
 	    $scope.todos.unshift({name: "This is a new todo.",
 	                      completed: false});
 	  };
-	  
 	}
 
 	module.exports = MainCtrl;

@@ -10,9 +10,9 @@ router.get('/todos', function  (req, res) {
 		if (err) {
 			return res.status(500).json({message: err.message});
 		}
-		res.send({todos:todos}); //imports mock data JSON data here
-	})
-})
+		res.json({ todos: todos}); //imports mock data JSON data here
+	});
+});
 
 router.post('/todos', function (req, res) {
 	var todo = req.body; //will be data for todos
@@ -24,7 +24,7 @@ router.post('/todos', function (req, res) {
 	})
 })
 
-router.put('/todos:id', function (req, res) {
+router.put('/todos/:id', function (req, res) {
 	var id = req.params.id;
 	var todo = req.body; //will be data for todos
 	if (todo && todo._id !== id) {
