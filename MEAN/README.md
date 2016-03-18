@@ -181,4 +181,7 @@
 	* .setTimeout() == $timeout
 * error method gives stack trace, which helps with debugging
 
-
+## Todo
+* [] Learn about mapping with webpack
+* [] how to use iron-node readme or debug.md
+* [] figure out why the queue is undefined in my-todo2
