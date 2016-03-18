@@ -15,5 +15,5 @@ Similar to my frontend development workshop, this is where I learn about new tec
 * [Postman](https://www.getpostman.com/)
 
 ### Todo
-* []Testing using npm .json as per [this](https://teamtreehouse.com/library/building-a-mean-application/introduction-to-the-mean-stack/setting-up-an-express-application)
-* []Email routing for product pages
+* [ ] Testing using npm .json as per [this](https://teamtreehouse.com/library/building-a-mean-application/introduction-to-the-mean-stack/setting-up-an-express-application)
+* [ ] Email routing for product pages
