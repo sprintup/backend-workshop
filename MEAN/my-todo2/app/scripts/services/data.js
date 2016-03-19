@@ -1,4 +1,4 @@
-'use strict';
+
 /*
 * https://teamtreehouse.com/library/building-a-mean-application/creating-and-editing-data-in-a-mean-app/create-and-update-data-in-angular
 
@@ -8,8 +8,8 @@
 function DataService($http, $q) {
 
   this.getTodos = function(cb) {
-    // $http.get('/api/todos').then(cb);
-    $http.get('/mock/todos.json').then(cb);
+    $http.get('/api/todos').then(cb);
+    // $http.get('/mock/todos.json').then(cb);
   };
   
   this.deleteTodo = function(todo) {
@@ -22,7 +22,7 @@ function DataService($http, $q) {
   };
   
   this.saveTodos = function(todos) {
-    debugger;
+    
   	var queue = [];
   	todos.forEach(function (todo) {
   		var request;
@@ -36,10 +36,10 @@ function DataService($http, $q) {
   		};
   		queue.push(request);
   	})
+    return $q.all(queue).then(function (results) {
+      console.log("I saved " + todos.length + " todos!");
+    });
   };
-  return $q.all(queue).then(function (results) {
-  	console.log("I saved " + todos.length + " todos!");
-  });
 };
 
 module.exports = DataService;

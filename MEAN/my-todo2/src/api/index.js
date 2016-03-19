@@ -5,7 +5,7 @@ var Todo = require('../models/todo'); //capital T references model, class or con
 // var todos = require('../../mock/todos.json'); 
 var router = express.Router();
 
-router.get('/todos', function  (req, res) {
+router.get('/todos', function(req, res) {
 	Todo.find({}, function (err, todos) {
 		if (err) {
 			return res.status(500).json({message: err.message});

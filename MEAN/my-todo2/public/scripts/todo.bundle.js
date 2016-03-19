@@ -29,7 +29,7 @@ webpackJsonp([0],[
 /* 4 */
 /***/ function(module, exports) {
 
-	'use strict';
+	
 	/*
 	* https://teamtreehouse.com/library/building-a-mean-application/creating-and-editing-data-in-a-mean-app/create-and-update-data-in-angular
 
@@ -39,8 +39,8 @@ webpackJsonp([0],[
 	function DataService($http, $q) {
 
 	  this.getTodos = function(cb) {
-	    // $http.get('/api/todos').then(cb);
-	    $http.get('/mock/todos.json').then(cb);
+	    $http.get('/api/todos').then(cb);
+	    // $http.get('/mock/todos.json').then(cb);
 	  };
 	  
 	  this.deleteTodo = function(todo) {
@@ -53,7 +53,7 @@ webpackJsonp([0],[
 	  };
 	  
 	  this.saveTodos = function(todos) {
-	    debugger;
+	    
 	  	var queue = [];
 	  	todos.forEach(function (todo) {
 	  		var request;
@@ -67,10 +67,10 @@ webpackJsonp([0],[
 	  		};
 	  		queue.push(request);
 	  	})
+	    return $q.all(queue).then(function (results) {
+	      console.log("I saved " + todos.length + " todos!");
+	    });
 	  };
-	  return $q.all(queue).then(function (results) {
-	  	console.log("I saved " + todos.length + " todos!");
-	  });
 	};
 
 	module.exports = DataService;
@@ -148,6 +148,7 @@ webpackJsonp([0],[
 			This is called using the ng-click directive from the index.html file; it creates a new todo and adds it to the todos that are currently in the angular scope
 	  */
 	  $scope.addTodo = function() {
+	    
 	    $scope.todos.unshift({name: "This is a new todo.",
 	                      completed: false});
 	  };

@@ -23,6 +23,7 @@ function MainCtrl ($scope, dataService){
 		This is called using the ng-click directive from the index.html file; it creates a new todo and adds it to the todos that are currently in the angular scope
   */
   $scope.addTodo = function() {
+    
     $scope.todos.unshift({name: "This is a new todo.",
                       completed: false});
   };
