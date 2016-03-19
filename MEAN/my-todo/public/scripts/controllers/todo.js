@@ -26,4 +26,4 @@ angular.module('todoListApp').controller('todoCtrl', function TodoCtrl($scope, d
   }
 );
 
-module.exports = TodoCtrl;
+// module.exports = TodoCtrl;

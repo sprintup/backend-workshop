@@ -10,6 +10,10 @@
  * index.js- api module
 * public- static assets (html files, imgs, css)
 
+## Todo
+* [ ] Learn about mapping with webpack
+* [ ] how to use iron-node readme or debug.md
+* [ ] figure out why the queue is undefined in my-todo2
 
 ### Express 
 * express() is the default method for creating an instance for setting up middleware for configuring routes and starting server
@@ -181,7 +185,4 @@
 	* .setTimeout() == $timeout
 * error method gives stack trace, which helps with debugging
 
-## Todo
-* [] Learn about mapping with webpack
-* [] how to use iron-node readme or debug.md
-* [] figure out why the queue is undefined in my-todo2
+

@@ -4,9 +4,7 @@
 
 * https://teamtreehouse.com/library/building-a-mean-application/going-mean-with-angular/geting-todos
 */
-angular.module('todoListApp').service('dataService'), require('./data');
-function DataService($http, $q) {
-
+angular.module('todoListApp').service('dataService'), function DataService($http, $q) {       
   this.getTodos = function(cb) {
     // $http.get('/api/todos').then(cb);
     $http.get('/mock/todos.json').then(cb);
@@ -22,22 +20,22 @@ function DataService($http, $q) {
   };
   
   this.saveTodos = function(todos) {
-  	var queue = [];
-  	todos.forEach(function (todo) {
-  		var request;
-  		if (!todo._id) {
-  			request = $http.post('/api/todos', todo)
-  		} else {
-  			request = $http.put('/api/todos/' + todo._id, todo).then(function  (result) {
-  				todo = result.data.todo;
-  				return todo;
-  			})
-  		};
-  		queue.push(request);
-  	})
+    var queue = [];
+    todos.forEach(function (todo) {
+      var request;
+      if (!todo._id) {
+        request = $http.post('/api/todos', todo)
+      } else {
+        request = $http.put('/api/todos/' + todo._id, todo).then(function  (result) {
+          todo = result.data.todo;
+          return todo;
+        })
+      };
+      queue.push(request);
+    })
   };
   return $q.all(queue).then(function (results) {
-  	console.log("I saved " + todos.length + " todos!");
+    console.log("I saved " + todos.length + " todos!");
   });
 };
 

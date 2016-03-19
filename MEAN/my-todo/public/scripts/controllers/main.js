@@ -8,6 +8,7 @@ https://teamtreehouse.com/library/building-a-mean-application/going-mean-with-an
 */
 
 'use strict';
+
 angular.module('todoListApp').controller('mainCtrl', function MainCtrl ($scope, dataService){
     
     /*
@@ -28,4 +29,4 @@ angular.module('todoListApp').controller('mainCtrl', function MainCtrl ($scope, 
   }
 );
 
-module.exports = MainCtrl;
+// module.exports = MainCtrl;
